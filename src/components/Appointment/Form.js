@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import InterviewerList from 'Components/InterviewerList';
 import Button from 'components/Button';
 
-export default function Form() {
+export default function Form(props) {
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
