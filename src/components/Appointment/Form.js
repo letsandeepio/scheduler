@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
 
-export default function Form(props) {
-  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+export default function Form({
+  interviewer: selectedInterviewer,
+  interviewers,
+  onSave,
+  onCancel
+}) {
+  const [interviewer, setInterviewer] = useState(selectedInterviewer || null);
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -19,15 +24,19 @@ export default function Form(props) {
           />
         </form>
         <InterviewerList
-          interviewers={props.interviewers}
+          interviewers={interviewers}
           value={interviewer}
           onChange={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger>Cancel</Button>
-          <Button confirm>Save</Button>
+          <Button danger onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button confirm onClick={onSave}>
+            Save
+          </Button>
         </section>
       </section>
     </main>
