@@ -165,5 +165,5 @@ storiesOf('Appointment', module)
       onClose={action('onClose')}
     />
   ))
-  .add('Create', () => <Form />);
+  .add('Create', () => <Form />)
   .add('Edit', () => <Form />);
