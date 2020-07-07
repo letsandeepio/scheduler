@@ -3,24 +3,25 @@ import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
 
 export default function Form({
+  name: selectedName,
   interviewer: selectedInterviewer,
   interviewers,
   onSave,
   onCancel
 }) {
   const [interviewer, setInterviewer] = useState(selectedInterviewer || null);
+  const [name, setName] = useState(selectedName || '');
+
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
         <form autoComplete="off">
           <input
             className="appointment__create-input text--semi-bold"
-            name="name"
             type="text"
             placeholder="Enter Student Name"
-            /*
-          This must be a controlled component
-        */
+            value={name}
+            onChange={(event) => setName(event.target.value)}
           />
         </form>
         <InterviewerList

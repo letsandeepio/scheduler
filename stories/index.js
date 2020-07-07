@@ -172,4 +172,12 @@ storiesOf('Appointment', module)
       onCancel={action('onCancel')}
     />
   ))
-  .add('Edit', () => <Form />);
+  .add('Edit', () => (
+    <Form
+      name="Sandeep Kumar Chopra"
+      interviewers={interviewers}
+      interviewer={2}
+      onSave={action('onSave')}
+      onCancel={action('onCancel')}
+    />
+  ));
