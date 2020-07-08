@@ -24,7 +24,7 @@ export default function Form({
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={(e) => e.preventDefault}>
           <input
             className="appointment__create-input text--semi-bold"
             type="text"
@@ -44,7 +44,7 @@ export default function Form({
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={onSave}>
+          <Button confirm onClick={() => onSave(name, interviewer)}>
             Save
           </Button>
         </section>
