@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
 import axios from 'axios';
+
+import { getAppointmentsForDay } from 'helpers/selectors';
 
 import 'components/Application.scss';
 
@@ -15,6 +16,7 @@ export default function Application(props) {
   });
 
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
+  const appointments = getAppointmentsForDay(state, state.day);
 
   useEffect(() => {
     const getDays = axios.get(`http://localhost:8001/api/days`);
