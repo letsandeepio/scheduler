@@ -12,6 +12,15 @@ export default function Form({
   const [interviewer, setInterviewer] = useState(selectedInterviewer || null);
   const [name, setName] = useState(selectedName || '');
 
+  function reset() {
+    setInterviewer(null);
+    setName('');
+  }
+
+  function cancel() {
+    reset();
+    onCancel();
+  }
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -32,7 +41,7 @@ export default function Form({
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={onCancel}>
+          <Button danger onClick={cancel}>
             Cancel
           </Button>
           <Button confirm onClick={onSave}>
