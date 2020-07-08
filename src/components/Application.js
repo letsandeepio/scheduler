@@ -74,9 +74,15 @@ export default function Application(props) {
   useEffect(() => {
     const getDays = axios.get(`http://localhost:8001/api/days`);
     const getAppointments = axios.get(`http://localhost:8001/api/appointments`);
-    Promise.all(getDays, getAppointments).then((response) =>
-      console.log('response' + response)
-    );
+    Promise.all([getDays, getAppointments]).then((res) => {
+      console.log(res[0].data);
+      console.log(res[1].data);
+      setState((prev) => ({
+        ...prev,
+        days: res[0].data,
+        appointments: res[1].data
+      }));
+    });
   }, []);
 
   return (
