@@ -9,10 +9,12 @@ export default function useVisualMode(initMode) {
     setHistory([...history, toMode]);
   }
   function back() {
-    const removeLast = [...history];
-    removeLast.pop();
-    setHistory(removeLast);
-    setMode(removeLast[removeLast.length - 1]);
+    if (history.length > 1) {
+      const removeLast = [...history];
+      removeLast.pop();
+      setHistory(removeLast);
+      setMode(removeLast[removeLast.length - 1]);
+    }
   }
   return {
     mode,
