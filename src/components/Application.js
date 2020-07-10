@@ -25,7 +25,7 @@ export default function Application(props) {
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
-    function bookInterview(id, interview) {
+    async function bookInterview(id, interview) {
       console.log(id, interview);
       const appointment = {
         ...state.appointments[id],
@@ -36,7 +36,11 @@ export default function Application(props) {
         [id]: appointment
       };
       setState({ ...state, appointments });
-      axios.put('http://localhost:8001/api/appointments');
+      const saveResponse = await axios.put(
+        `http://localhost:8001/api/appointments/${id}`,
+        appointment
+      );
+      console.log(saveResponse);
     }
 
     return (
