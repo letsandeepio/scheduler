@@ -44,9 +44,16 @@ export default function Form({
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={() => onSave(name, interviewer)}>
-            Save
-          </Button>
+
+          {interviewer && name ? (
+            <Button confirm onClick={onSave}>
+              Save
+            </Button>
+          ) : (
+            <Button confirm disabled onClick={onSave}>
+              Save
+            </Button>
+          )}
         </section>
       </section>
     </main>
