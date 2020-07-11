@@ -4,6 +4,7 @@ import axios from 'axios';
 const SET_DAY = 'SET_DAY';
 const SET_APPLICATION_DATA = 'SET_APPLICATION_DATA';
 const SET_INTERVIEW = 'SET_INTERVIEW';
+const SET_DAYS = 'SET_DAYS';
 
 function reducer(state, { type, day, days, appointments, interviewers }) {
   switch (type) {
@@ -20,7 +21,9 @@ function reducer(state, { type, day, days, appointments, interviewers }) {
         interviewers
       };
     case SET_INTERVIEW:
-      return { ...state, appointments: appointments };
+      return { ...state, appointments };
+    case SET_DAYS:
+      return { ...state, days };
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${type}`);
   }
@@ -35,8 +38,9 @@ export default function useApplicationData() {
   });
 
   async function updateSpots() {
-    //const getDays = await axios.get(`http://localhost:8001/api/days`);
-    //setState((prev) => ({ ...prev, days: getDays.data }));
+    const getResponse = await axios.get(`http://localhost:8001/api/days`);
+    const days = getResponse.data;
+    dispatch({ type: SET_DAYS, days });
   }
 
   useEffect(() => {
