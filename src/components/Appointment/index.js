@@ -52,7 +52,7 @@ export default function Appointment({
         <Show
           student={interview.student}
           interviewer={interview.interviewer}
-          onDelete={onDelete}
+          onDelete={() => transition(CONFIRM)}
         />
       )}
       {mode === CREATE && (
