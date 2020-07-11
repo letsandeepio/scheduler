@@ -4,6 +4,7 @@ import Show from 'components/Appointment/Show';
 import Empty from 'components/Appointment/Empty';
 import Form from 'components/Appointment/Form';
 import Status from 'components/Appointment/Status';
+import Confirm from 'components/Appointment/Confirm';
 
 import useVisualMode from 'hooks/useVisualMode';
 
@@ -14,6 +15,7 @@ const SHOW = 'SHOW';
 const CREATE = 'CREATE ';
 const SAVING = 'SAVING';
 const DELETING = 'DELETING';
+const CONFIRM = 'CONFIRM';
 
 export default function Appointment({
   id,
@@ -66,7 +68,7 @@ export default function Appointment({
         <Confirm
           message="This action will delete the Appointment. Are you sure?"
           onCancel={back}
-          onConfirm={() => deleteInterview(props.id)}
+          onConfirm={onDelete}
         />
       )}
     </article>
