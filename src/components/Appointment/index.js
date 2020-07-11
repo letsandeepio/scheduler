@@ -47,9 +47,13 @@ export default function Appointment({
   }
 
   async function onDelete() {
-    transition(DELETING);
-    await cancelInterview(id);
-    transition(EMPTY);
+    transition(DELETING, true);
+    try {
+      await cancelInterview(id);
+      transition(EMPTY);
+    } catch (error) {
+      transition(ERROR_DELETE, true);
+    }
   }
 
   async function onEdit() {
