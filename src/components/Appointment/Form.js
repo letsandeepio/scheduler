@@ -46,11 +46,11 @@ export default function Form({
           </Button>
 
           {interviewer && name ? (
-            <Button confirm onClick={onSave}>
+            <Button confirm onClick={() => onSave(name, interviewer)}>
               Save
             </Button>
           ) : (
-            <Button confirm disabled onClick={onSave}>
+            <Button confirm disabled>
               Save
             </Button>
           )}
