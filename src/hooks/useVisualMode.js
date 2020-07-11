@@ -20,7 +20,7 @@ export default function useVisualMode(initMode) {
   function back() {
     if (history.length > 1) {
       setHistory((prev) => {
-        const removeLast = [...prev];
+        let removeLast = [...prev];
         removeLast.pop();
         let lastMode = removeLast[removeLast.length - 1];
         setMode(lastMode);

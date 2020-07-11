@@ -5,6 +5,7 @@ import Empty from 'components/Appointment/Empty';
 import Form from 'components/Appointment/Form';
 import Status from 'components/Appointment/Status';
 import Confirm from 'components/Appointment/Confirm';
+import Error from 'components/Appointment/Error';
 
 import useVisualMode from 'hooks/useVisualMode';
 
@@ -37,8 +38,12 @@ export default function Appointment({
       interviewer: interviewer.id
     };
     transition(SAVING);
-    await bookInterview(id, interview);
-    transition(SHOW);
+    try {
+      await bookInterview(id, interview);
+      transition(SHOW);
+    } catch (error) {
+      transition(ERROR_SAVE, true);
+    }
   }
 
   async function onDelete() {
@@ -48,7 +53,6 @@ export default function Appointment({
   }
 
   async function onEdit() {
-    console.log('editing ' + 1);
     transition(EDIT);
   }
 
@@ -82,6 +86,10 @@ export default function Appointment({
       )}
       {mode === SAVING && <Status message="Saving" />}
       {mode === DELETING && <Status message="Deleting" />}
+      {mode === ERROR_SAVE && <Error message="Saving" onClose={() => back()} />}
+      {mode === ERROR_DELETE && (
+        <Error message="Deleting" onClose={() => back()} />
+      )}
       {mode === CONFIRM && (
         <Confirm
           message="This action will delete the Appointment. Are you sure?"
