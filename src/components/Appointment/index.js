@@ -16,6 +16,7 @@ const CREATE = 'CREATE ';
 const SAVING = 'SAVING';
 const DELETING = 'DELETING';
 const CONFIRM = 'CONFIRM';
+const EDIT = 'EDIT';
 
 export default function Appointment({
   id,
@@ -31,7 +32,7 @@ export default function Appointment({
   async function save(name, interviewer) {
     const interview = {
       student: name,
-      interviewer
+      interviewer: interviewer.id
     };
     transition(SAVING);
     await bookInterview(id, interview);
@@ -44,6 +45,11 @@ export default function Appointment({
     transition(EMPTY);
   }
 
+  async function onEdit() {
+    console.log('editing ' + 1);
+    transition(EDIT);
+  }
+
   return (
     <article className="appointment">
       <Header time={time} />
@@ -53,10 +59,20 @@ export default function Appointment({
           student={interview.student}
           interviewer={interview.interviewer}
           onDelete={() => transition(CONFIRM)}
+          onEdit={onEdit}
         />
       )}
       {mode === CREATE && (
         <Form
+          interviewers={interviewers}
+          onCancel={() => back()}
+          onSave={save}
+        />
+      )}
+      {mode === EDIT && (
+        <Form
+          name={interview.student}
+          interviewer={interview.interviewer}
           interviewers={interviewers}
           onCancel={() => back()}
           onSave={save}
