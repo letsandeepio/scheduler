@@ -9,7 +9,10 @@ export default function useApplicationData() {
     interviewers: {}
   });
 
-  console.log('from hook', state);
+  async function updateSpots() {
+    const getDays = await axios.get(`http://localhost:8001/api/days`);
+    setState((prev) => ({ ...prev, days: getDays.data }));
+  }
 
   useEffect(() => {
     const getDays = axios.get(`http://localhost:8001/api/days`);
@@ -42,6 +45,7 @@ export default function useApplicationData() {
       appointment
     );
     setState({ ...state, appointments });
+    updateSpots();
   }
 
   async function cancelInterview(id) {
@@ -52,6 +56,7 @@ export default function useApplicationData() {
     const appointments = { ...state.appointments, [id]: appointment };
     await axios.delete(`http://localhost:8001/api/appointments/${id}`);
     setState({ ...state, appointments });
+    updateSpots();
   }
 
   return {
