@@ -60,6 +60,7 @@ export default function useApplicationData() {
       if (event.data.includes('SET_INTERVIEW')) {
         console.log('server' + event.data);
         dispatch(JSON.parse(event.data));
+        updateSpots();
       }
     };
   }, []);
@@ -101,13 +102,13 @@ export default function useApplicationData() {
     );
     //console.log({ type: SET_INTERVIEW, interview, id });
     //dispatch({ type: SET_INTERVIEW, interview, id });
-    updateSpots();
+    //updateSpots();
   }
 
   async function cancelInterview(id) {
     await axios.delete(`http://localhost:8001/api/appointments/${id}`);
     //dispatch({ type: SET_INTERVIEW, interview, id });
-    updateSpots();
+    //updateSpots();
   }
 
   return {
