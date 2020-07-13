@@ -45,12 +45,13 @@ describe('Form', () => {
         interviewers={interviewers}
         onSave={onSave}
         name="Lydia Miller-Jones"
+        interviewer={2}
       />
     );
     fireEvent.click(getByText('Save'));
 
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
     expect(onSave).toHaveBeenCalledTimes(1);
-    expect(onSave).toHaveBeenCalledWith('Lydia Miller-Jones', null);
+    expect(onSave).toHaveBeenCalledWith('Lydia Miller-Jones', 2);
   });
 });
