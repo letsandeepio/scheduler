@@ -29,6 +29,7 @@ export default function Form({
             className="appointment__create-input text--semi-bold"
             type="text"
             placeholder="Enter Student Name"
+            data-testid="student-name-input"
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
