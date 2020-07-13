@@ -29,6 +29,7 @@ export default function Form({
       return;
     }
 
+    setError('');
     onSave(name, interviewer);
   }
 
