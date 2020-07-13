@@ -34,7 +34,7 @@ function reducer(
         ...state.appointments,
         [id]: appointment
       };
-      console.log('appointments' + JSON.stringify(newAppointments));
+      //console.log('appointments' + JSON.stringify(newAppointments));
       return { ...state, appointments: newAppointments };
     case SET_DAYS:
       return { ...state, days };
@@ -58,7 +58,7 @@ export default function useApplicationData() {
     };
     exampleSocket.onmessage = (event) => {
       if (event.data.includes('SET_INTERVIEW')) {
-        console.log('server' + event.data);
+        //console.log('server' + event.data);
         dispatch(JSON.parse(event.data));
         updateSpots();
       }
