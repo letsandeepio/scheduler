@@ -5,7 +5,6 @@ import {
   cleanup,
   waitForElement,
   fireEvent,
-  prettyDOM,
   getByText,
   getAllByTestId,
   getByAltText,
@@ -31,11 +30,7 @@ describe('Application', () => {
 
     const appointment = getAllByTestId(container, 'appointment')[0];
 
-    console.log(prettyDOM(appointment));
-
     fireEvent.click(getByAltText(appointment, 'Add'));
-
-    console.log(prettyDOM(appointment));
 
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: { value: 'Lydia Miller-Jones' }
@@ -43,5 +38,7 @@ describe('Application', () => {
 
     fireEvent.click(getByAltText(appointment, 'Sylvia Palmer'));
     fireEvent.click(getByText(appointment, 'Save'));
+
+    expect(getByText(appointment, /saving/i)).toBeInTheDocument();
   });
 });
