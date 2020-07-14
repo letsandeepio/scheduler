@@ -27,6 +27,6 @@ export default function InterviewerList({ interviewers, value, onChange }) {
 }
 
 InterviewerList.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.object,
   onChange: PropTypes.func.isRequired
 };
