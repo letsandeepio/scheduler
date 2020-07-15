@@ -54,7 +54,10 @@ const fixtures = {
 };
 
 export default {
-  mock: jest.fn(() => {
+  delete: jest.fn(() => {
+    return Promise.resolve({ status: 204, statusText: 'No Content' });
+  }),
+  put: jest.fn(() => {
     return Promise.resolve({ status: 204, statusText: 'No Content' });
   }),
   get: jest.fn((url) => {
