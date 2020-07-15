@@ -127,30 +127,13 @@ describe('Application', () => {
 
     const appointment = getAllByTestId(container, 'appointment')[1];
 
-    console.log('========appontment element===========');
-    console.log(prettyDOM(appointment));
-
     fireEvent.click(getByAltText(appointment, 'Delete'));
-
-    console.log('========afteer clicking delete===========');
-    console.log(prettyDOM(appointment));
 
     fireEvent.click(getByText(appointment, 'Confirm'));
 
-    console.log('========after clicking confirm===========');
-    console.log(prettyDOM(appointment));
-
     expect(getByText(appointment, 'Deleting')).toBeInTheDocument();
-
-    console.log('========after confirming deleting is there===========');
-    console.log(prettyDOM(appointment));
-
-    console.log('========waiting for error to show up===========');
     await waitForElement(() => getByText(appointment, 'Error'), {
       options: { timeout: 5000 }
     });
-
-    console.log('========after timeout of 5 seconds===========');
-    console.log(prettyDOM(appointment));
   });
 });
