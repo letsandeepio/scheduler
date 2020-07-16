@@ -85,7 +85,7 @@ export default function useApplicationData() {
   const setDay = (day) => dispatch({ type: SET_DAY, day });
 
   async function updateSpots() {
-    const getResponse = await axios.get(`http://localhost:8001/api/days`);
+    const getResponse = await axios.get(`/api/days`);
     const days = getResponse.data;
     dispatch({ type: SET_DAYS, days });
   }
@@ -96,17 +96,14 @@ export default function useApplicationData() {
       interview: { ...interview }
     };
 
-    await axios.put(
-      `http://localhost:8001/api/appointments/${id}`,
-      appointment
-    );
+    await axios.put(`/api/appointments/${id}`, appointment);
     //console.log({ type: SET_INTERVIEW, interview, id });
     //dispatch({ type: SET_INTERVIEW, interview, id });
     //updateSpots();
   }
 
   async function cancelInterview(id) {
-    await axios.delete(`http://localhost:8001/api/appointments/${id}`);
+    await axios.delete(`/api/appointments/${id}`);
     //dispatch({ type: SET_INTERVIEW, interview, id });
     //updateSpots();
   }
