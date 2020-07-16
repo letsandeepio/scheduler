@@ -16,21 +16,7 @@ export default function useApplicationData() {
     interviewers: {}
   });
 
-  useRealtimeUpdate(dispatch, updateSpots);
-
-  // useEffect(() => {
-  //   let exampleSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
-  //   exampleSocket.onopen = () => {
-  //     exampleSocket.send('ping');
-  //   };
-  //   exampleSocket.onmessage = (event) => {
-  //     if (event.data.includes(SET_INTERVIEW)) {
-  //       //console.log('server' + event.data);
-  //       dispatch(JSON.parse(event.data));
-  //       updateSpots();
-  //     }
-  //   };
-  // }, []);
+  useRealtimeUpdate(dispatch, updateSpots); //required to enable realtime updates using websocket IO
 
   useEffect(() => {
     const getDays = axios.get(`/api/days`);
@@ -49,9 +35,10 @@ export default function useApplicationData() {
     });
   }, []);
 
-  const setDay = (day) => dispatch({ type: SET_DAY, day });
+  const setDay = (day) => dispatch({ type: SET_DAY, day }); //utitlity function to update the state with the selected day
 
   async function updateSpots() {
+    //utitlity function to update the current spots available from the server
     const getResponse = await axios.get(`/api/days`);
     const days = getResponse.data;
     dispatch({ type: SET_DAYS, days });
@@ -64,15 +51,10 @@ export default function useApplicationData() {
     };
 
     await axios.put(`/api/appointments/${id}`, appointment);
-    //console.log({ type: SET_INTERVIEW, interview, id });
-    //dispatch({ type: SET_INTERVIEW, interview, id });
-    //updateSpots();
   }
 
   async function cancelInterview(id) {
     await axios.delete(`/api/appointments/${id}`);
-    //dispatch({ type: SET_INTERVIEW, interview, id });
-    //updateSpots();
   }
 
   return {
