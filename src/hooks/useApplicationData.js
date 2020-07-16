@@ -1,47 +1,12 @@
 import { useReducer, useEffect } from 'react';
 import axios from 'axios';
 
-const SET_DAY = 'SET_DAY';
-const SET_APPLICATION_DATA = 'SET_APPLICATION_DATA';
-const SET_INTERVIEW = 'SET_INTERVIEW';
-const SET_DAYS = 'SET_DAYS';
-
-function reducer(
-  state,
-  { id, type, day, days, interview, appointments, interviewers }
-) {
-  switch (type) {
-    case SET_DAY:
-      return {
-        ...state,
-        day
-      };
-    case SET_APPLICATION_DATA:
-      return {
-        ...state,
-        days,
-        appointments,
-        interviewers
-      };
-    case SET_INTERVIEW:
-      //console.log('interview' + JSON.stringify(interview));
-
-      const appointment = {
-        ...state.appointments[id],
-        interview: interview ? { ...interview } : null
-      };
-      const newAppointments = {
-        ...state.appointments,
-        [id]: appointment
-      };
-      //console.log('appointments' + JSON.stringify(newAppointments));
-      return { ...state, appointments: newAppointments };
-    case SET_DAYS:
-      return { ...state, days };
-    default:
-      throw new Error(`Tried to reduce with unsupported action type: ${type}`);
-  }
-}
+import reducer, {
+  SET_DAY,
+  SET_APPLICATION_DATA,
+  SET_INTERVIEW,
+  SET_DAYS
+} from 'reducers/application';
 
 export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
@@ -57,7 +22,7 @@ export default function useApplicationData() {
       exampleSocket.send('ping');
     };
     exampleSocket.onmessage = (event) => {
-      if (event.data.includes('SET_INTERVIEW')) {
+      if (event.data.includes(SET_INTERVIEW)) {
         //console.log('server' + event.data);
         dispatch(JSON.parse(event.data));
         updateSpots();
