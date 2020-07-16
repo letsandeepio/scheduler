@@ -1,10 +1,10 @@
 import { useReducer, useEffect } from 'react';
 import axios from 'axios';
+import useRealtimeUpdate from './useRealtimeUpdate.js';
 
 import reducer, {
   SET_DAY,
   SET_APPLICATION_DATA,
-  SET_INTERVIEW,
   SET_DAYS
 } from 'reducers/application';
 
@@ -16,19 +16,21 @@ export default function useApplicationData() {
     interviewers: {}
   });
 
-  useEffect(() => {
-    let exampleSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
-    exampleSocket.onopen = () => {
-      exampleSocket.send('ping');
-    };
-    exampleSocket.onmessage = (event) => {
-      if (event.data.includes(SET_INTERVIEW)) {
-        //console.log('server' + event.data);
-        dispatch(JSON.parse(event.data));
-        updateSpots();
-      }
-    };
-  }, []);
+  useRealtimeUpdate(dispatch, updateSpots);
+
+  // useEffect(() => {
+  //   let exampleSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+  //   exampleSocket.onopen = () => {
+  //     exampleSocket.send('ping');
+  //   };
+  //   exampleSocket.onmessage = (event) => {
+  //     if (event.data.includes(SET_INTERVIEW)) {
+  //       //console.log('server' + event.data);
+  //       dispatch(JSON.parse(event.data));
+  //       updateSpots();
+  //     }
+  //   };
+  // }, []);
 
   useEffect(() => {
     const getDays = axios.get(`/api/days`);
