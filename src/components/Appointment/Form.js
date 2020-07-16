@@ -29,7 +29,7 @@ export default function Form({
       return;
     }
     if (!interviewer) {
-      setError('Please select interviewer');
+      setError('Please select a interviewer to continue.');
       return;
     }
 

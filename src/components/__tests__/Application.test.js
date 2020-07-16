@@ -11,8 +11,7 @@ import {
   getByAltText,
   getByPlaceholderText,
   waitForElementToBeRemoved,
-  queryByText,
-  prettyDOM
+  queryByText
 } from '@testing-library/react';
 
 import Application from 'components/Application';
@@ -49,10 +48,8 @@ describe('Application', () => {
   });
 
   it('loads data, cancels an interview and increases the spots remaining for Monday by 1', async () => {
-    // 1. Render the Application.
     const { container } = render(<Application />);
 
-    // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, 'Archie Cohen'));
 
     const appointment = getAllByTestId(container, 'appointment')[1];
@@ -121,7 +118,7 @@ describe('Application', () => {
   it('shows the delete error when failing to delete an existing appointment', async () => {
     axios.delete.mockRejectedValueOnce();
 
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
 
     await waitForElement(() => getByText(container, 'Archie Cohen'));
 
