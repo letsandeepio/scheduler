@@ -4,6 +4,8 @@
 
 Interview Scheduler is a Single Page Application (SPA) primarily built using React and other modern web technologies. The app achieves real-time connectivity using a web socket connection and updates data in realtime on all connected clients. A Redux like custom reducer hook is used for global state management locally. The project is built using "bottom-up" CDD (Component Driven Development) as well as TDD (Test Driven Development) for thorough testing of components in isolation, followed by integration & End-to-End testing for quality assurance purposes.
 
+[ [View Live Version](https://jolly-ride-7ef0bb.netlify.app/) ]
+
 ## App Welcome Screen
 
 ![scheduler](https://raw.githubusercontent.com/letsandeepio/scheduler/master/screenshots/App%20Welcome%20Screen.png)
