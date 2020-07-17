@@ -29,3 +29,5 @@ Jest is used to test the logic & individual components as well as their behaviou
 ### Cypress
 
 Cypress is used to modelling user behaviour and test for real-time app feedback for end-to-end testing using most common task patterns e.g. Creating, Editing & Deleting an appointment.
+
+### Code Coverage
