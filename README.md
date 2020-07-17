@@ -2,13 +2,13 @@
 
 # Interview Scheduler
 
-Interview Scheduler is a Single Page Application (SPA) primarily built using React and other modern web technologies. The app achieves real-time connectivity using a web socket connection and updates data in realtime on all connected clients. A Redux like custom reducer hook is used for global state management locally. CDD (Component Driven Development) & TDD (Test Driven Development) is used for thorough testing of components in isolation, followed by integration & End-to-End testing for quality assurance purposes.
+Interview Scheduler is a Single Page Application (SPA) primarily built using React and other modern web technologies. The app achieves real-time connectivity using a web socket connection and updates data in realtime on all connected clients. A Redux like custom reducer hook is used for global state management locally. The project is built using "bottom-up" CDD (Component Driven Development) as well as TDD (Test Driven Development) for thorough testing of components in isolation, followed by integration & End-to-End testing for quality assurance purposes.
 
 ## Front-End & Back-End
 
-App uses REST API to communicate with the back-end server (built using Node.JS, Websockets and Express.JS). For database connectivity, PostgreSQL, a powerful, open-source object-relational database system is provided through Heroku Provisioned Services. The back-end is currently deployed using HerokuApp at: which the app connects to at . (Demo note: Please allow the Heroku dyno to warm up after 30 minutes of inactivity on the server part)
+App uses REST API to communicate with the back-end server (built using Node.JS, Websockets and Express.JS). For database connectivity, PostgreSQL, a powerful, open-source object-relational database system is provided through Heroku Provisioned Services. The back-end is currently deployed using HerokuApp which the app connects to at http://scheduler-be-api.herokuapp.com/api/ . (Demo note: Please allow the Heroku dyno to warm up after 30 minutes of inactivity on the server part)
 
-The front-end follows CI/CD for real-time deployment after each successful build and testing and is currently deployed at .
+The front-end follows CI/CD for real-time deployment after each successful build and testing and is currently deployed at https://jolly-ride-7ef0bb.netlify.app/.
 
 ## CI/CD Pipeline
 
@@ -30,4 +30,12 @@ Jest is used to test the logic & individual components as well as their behaviou
 
 Cypress is used to modelling user behaviour and test for real-time app feedback for end-to-end testing using most common task patterns e.g. Creating, Editing & Deleting an appointment.
 
-### Code Coverage
+## User Experience & Design
+
+A simple walkthrough for creating, editing & deleting appointment can be seen in the following demo. (PS: We can observe vaiours validtation messages in red color when user tries to submit form with invalid data)
+
+[![scheduler](https://img.shields.io/circleci/build/github/letsandeepio/scheduler)]
+
+Resources:
+
+https://blog.hichroma.com/component-driven-development-ce1109d56c8e
