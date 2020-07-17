@@ -4,6 +4,10 @@
 
 Interview Scheduler is a Single Page Application (SPA) primarily built using React and other modern web technologies. The app achieves real-time connectivity using a web socket connection and updates data in realtime on all connected clients. A Redux like custom reducer hook is used for global state management locally. The project is built using "bottom-up" CDD (Component Driven Development) as well as TDD (Test Driven Development) for thorough testing of components in isolation, followed by integration & End-to-End testing for quality assurance purposes.
 
+## App Welcome Screen
+
+![scheduler](https://raw.githubusercontent.com/letsandeepio/scheduler/master/screenshots/App%20Welcome%20Screen.png)
+
 ## Front-End & Back-End
 
 App uses REST API to communicate with the back-end server (built using Node.JS, Websockets and Express.JS). For database connectivity, PostgreSQL, a powerful, open-source object-relational database system is provided through Heroku Provisioned Services. The back-end is currently deployed using HerokuApp which the app connects to at http://scheduler-be-api.herokuapp.com/api/ . (Demo note: Please allow the Heroku dyno to warm up after 30 minutes of inactivity on the server part)
@@ -32,9 +36,31 @@ Cypress is used to modelling user behaviour and test for real-time app feedback 
 
 ## User Experience & Design
 
-A simple walkthrough for creating, editing & deleting appointment can be seen in the following demo. (PS: We can observe vaiours validtation messages in red color when user tries to submit form with invalid data)
+A simple walkthrough for creating, editing & deleting appointment can be seen in the following demo. (PS: Form Validation messages appear in red.)
 
-[![scheduler](https://img.shields.io/circleci/build/github/letsandeepio/scheduler)]
+![scheduler](https://github.com/letsandeepio/scheduler/blob/master/screenshots/captured.gif?raw=true)
+
+## Installation
+
+Install dependencies with `npm install`.
+
+### Running Webpack Development Server
+
+```sh
+npm start
+```
+
+### Running Jest Test Framework
+
+```sh
+npm test
+```
+
+### Running Storybook Visual Testbed
+
+```sh
+npm run storybook
+```
 
 Resources:
 
